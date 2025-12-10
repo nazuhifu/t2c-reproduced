@@ -16,7 +16,7 @@ T2C_CONF="$T2C_DIR/conf/samples/zk-3.4.11.properties"
 LOGFILE="$ROOT_DIR/run_experiments.log"
 
 # Redirect noisy output to log file
-exec > >(tee -a "$LOGFILE") 2>&1
+exec >> "$LOGFILE" 2>&1
 
 echo "Project root: $ROOT_DIR"
 echo "T2C_CONF: $T2C_CONF"
@@ -82,14 +82,18 @@ cd "$SYSTEM_DIR"
 # -------------------------------------------------
 # Show result in Jupyter (not only in log file)
 # -------------------------------------------------
-echo "=== EXPERIMENT FINISHED ===" >&2
-echo "Showing important results from t2c.prod.log" >&2
+{
+  echo ""
+  echo "=== EXPERIMENT FINISHED ==="
+  echo "Important results (from t2c.prod.log):"
+} >&2
 
 if [ -f "$SYSTEM_DIR/t2c.prod.log" ]; then
-  echo ""
-  echo "----- Log Preview / Result -----" >&2
-  grep -E 'SuccessMap|FailMap' "$SYSTEM_DIR/t2c.prod.log" || echo "No SuccessMap/FailMap entries found" >&2
-  echo "--------------------------------" >&2
+  {
+    echo "----- Log Preview / Result -----"
+    grep -E 'SuccessMap|FailMap' "$SYSTEM_DIR/t2c.prod.log" || echo "No SuccessMap/FailMap entries found"
+    echo "--------------------------------"
+  } >&2
 else
   echo "Log file not found: $SYSTEM_DIR/t2c.prod.log" >&2
 fi

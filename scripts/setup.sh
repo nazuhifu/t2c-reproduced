@@ -11,8 +11,8 @@ ROOT_DIR="$(dirname "$SCRIPT_DIR")"
 
 LOGFILE="$ROOT_DIR/setup.log"
 
-# Redirect all output to log file + still show in Jupyter
-exec > >(tee -a "$LOGFILE") 2>&1
+# Redirect all output to log file
+exec >> "$LOGFILE" 2>&1
 
 echo "Project root: $ROOT_DIR"
 
