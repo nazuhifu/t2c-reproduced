@@ -86,6 +86,9 @@ echo "Using config: $T2C_CONF"
 echo "System dir: $SYSTEM_DIR"
 
 sed -i "s|system_dir_path=.*|system_dir_path=$SYSTEM_DIR|" "$T2C_CONF"
+sed -i \
+  's|^#specified_test_class_list=org.apache.zookeeper.server.quorum.EphemeralNodeDeletionTest,org.apache.zookeeper.test.SessionInvalidationTest,org.apache.zookeeper.test.SessionTest|specified_test_class_list=org.apache.zookeeper.server.quorum.EphemeralNodeDeletionTest,org.apache.zookeeper.test.SessionInvalidationTest,org.apache.zookeeper.test.SessionTest|g' \
+  "$T2C_CONF"
 
 cd "$ROOT_DIR/T2C"
 

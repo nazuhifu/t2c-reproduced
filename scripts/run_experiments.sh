@@ -27,10 +27,6 @@ echo "SYSTEM_DIR: $SYSTEM_DIR"
 # -------------------------------------------------
 echo "Updating specified_test_class_list in config..."
 
-sed -i \
-  's|^#specified_test_class_list=org.apache.zookeeper.server.quorum.EphemeralNodeDeletionTest,org.apache.zookeeper.test.SessionInvalidationTest,org.apache.zookeeper.test.SessionTest|specified_test_class_list=org.apache.zookeeper.server.quorum.EphemeralNodeDeletionTest,org.apache.zookeeper.test.SessionInvalidationTest,org.apache.zookeeper.test.SessionTest|g' \
-  "$T2C_CONF"
-
 # -------------------------------------------------
 # Offline build & validate templates
 # -------------------------------------------------
